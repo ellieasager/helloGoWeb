@@ -12,12 +12,6 @@ type HttpHandler struct{}
 // implement `ServeHTTP` method on `HttpHandler` struct
 func (h HttpHandler) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 
-	// // create response binary data
-	// data := []byte("Hello World, \nThis is a go server!") // slice of bytes
-
-	// // write `data` to response
-	// res.Write(data)
-
 	// write `Hello` using `io.WriteString` function
 	io.WriteString(res, "Hello")
 	// write `World` using `fmt.Fprint` function
@@ -28,10 +22,19 @@ func (h HttpHandler) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 
-	// create a new handler
-	handler := HttpHandler{}
+	// create a new `ServeMux`
+	mux := http.NewServeMux()
 
-	// listen and serve
-	http.ListenAndServe(":9000", handler)
+	// handle `/` route
+	mux.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+		fmt.Fprint(res, "Hello World! ❤️")
+	})
 
+	// handle `/hello/golang` route
+	mux.HandleFunc("/hello/golang", func(res http.ResponseWriter, req *http.Request) {
+		fmt.Fprint(res, "Hello Golang! ❤️")
+	})
+
+	// listen and serve using `ServeMux`
+	http.ListenAndServe(":9000", mux)
 }
