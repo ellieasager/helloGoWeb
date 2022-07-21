@@ -22,19 +22,16 @@ func (h HttpHandler) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 
-	// create a new `ServeMux`
-	mux := http.NewServeMux()
-
-	// handle `/` route
-	mux.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+	// handle `/` route to `http.DefaultServeMux`
+	http.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(res, "Hello World! ❤️")
 	})
 
-	// handle `/hello/golang` route
-	mux.HandleFunc("/hello/golang", func(res http.ResponseWriter, req *http.Request) {
+	// handle `/hello/golang` route to `http.DefaultServeMux`
+	http.HandleFunc("/hello/golang", func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(res, "Hello Golang! ❤️")
 	})
 
-	// listen and serve using `ServeMux`
-	http.ListenAndServe(":9000", mux)
+	// listen and serve using `http.DefaultServeMux`
+	http.ListenAndServe(":9000", nil)
 }
