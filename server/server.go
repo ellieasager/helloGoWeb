@@ -25,6 +25,11 @@ func main() {
 
 	// handle `/` route to `http.DefaultServeMux`
 	http.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+		res.Write([]byte("Hello World! ❤️"))
+	})
+
+	// handle `/` route to `http.DefaultServeMux`
+	http.HandleFunc("/error", func(res http.ResponseWriter, req *http.Request) {
 
 		// get response headers
 		header := res.Header()
