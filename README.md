@@ -9,6 +9,8 @@
 git clone https://github.com/ellieasager/helloGoWeb
 cd helloGoWeb
 go mod init github.com/ellieasager/helloGoWeb
+go install github.com/ellieasager/helloGoWeb
+go build
 go run server/server.go
 ```
 
