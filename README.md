@@ -12,4 +12,4 @@ go mod init github.com/ellieasager/helloGoWeb
 go run server/server.go
 ```
 
-2. In the browser go to `http://127.0.0.1:9000`
+2. In the browser go to `http://127.0.0.1:9000` for error or to `http://127.0.0.1:9000/hello/golang` for text.
